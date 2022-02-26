@@ -66,7 +66,9 @@ const routes = (req, res) => {
 // exports.someText =  "Some Hard coded Text";
 
 // 3. Multiple Exports in Single Object
-module.exports = {
+// 4. Node provide the Shorthand Syntax for Exporting Modules
+// module.exports => exports. is also works
+exports = {
   handler: routes,
   someText: "my some text..."
 }
