@@ -8,7 +8,16 @@
   "scripts": {
     "start": "nodemon app.js",
   },
-
 ```
 3. To Debug use F5
-4. 
+4. To Launch the Debugger when changes detech set the following in launch.json
+```json
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}\\app.js",
+      "restart": true,
+      "runtimeExecutable": "nodemon"
+    }
+```

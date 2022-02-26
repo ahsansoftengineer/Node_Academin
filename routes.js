@@ -37,6 +37,7 @@ const routes = (req, res) => {
     return req.on('end', () => {
       const parsedBody = Buffer.concat(body).toString();
       const message = parsedBody.split('=')[1];
+      console.log(message);
       // Blocking File
       // fs.writeFileSync('message.txt', message)
       // res.statusCode = 302;
