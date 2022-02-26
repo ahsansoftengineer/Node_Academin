@@ -11,6 +11,7 @@
 ```
 3. To Debug use F5
 4. To Launch the Debugger when changes detech set the following in launch.json
+5. For Debugging purpose your Nodemon must install globally
 ```json
     {
       "type": "node",
