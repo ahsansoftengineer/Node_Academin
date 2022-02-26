@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 var apiHitTime = 0
 const routes = (req, res) => {
   const url = req.url;
@@ -60,8 +62,8 @@ const routes = (req, res) => {
 // module.exports = routes
 
 // 2. Exporting Multiple Items in Individually
-// module.exports.handler =  routes;
-// module.exports.someText =  "Some Hard coded Text";
+// exports.handler =  routes;
+// exports.someText =  "Some Hard coded Text";
 
 // 3. Multiple Exports in Single Object
 module.exports = {
