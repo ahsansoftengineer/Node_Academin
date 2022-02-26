@@ -1,0 +1,25 @@
+{
+  "name": "node_academin",
+  "version": "1.0.0",
+  "description": "Learning Node JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "start-server": "node app.js",
+    "start-server-comment": "// npm run start-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahsansoftengineer/Node_Academin.git"
+  },
+  "author": "Muhammad Ahsan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahsansoftengineer/Node_Academin/issues"
+  },
+  "homepage": "https://github.com/ahsansoftengineer/Node_Academin#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

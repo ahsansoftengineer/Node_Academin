@@ -37,17 +37,18 @@ const routes = (req, res) => {
     return req.on('end', () => {
       const parsedBody = Buffer.concat(body).toString();
       const message = parsedBody.split('=')[1];
+      console.log(message);
       // Blocking File
-      fs.writeFileSync('message.txt', message)
-      res.statusCode = 302;
-      res.setHeader('Location', '/');
-      return res.end();
+      // fs.writeFileSync('message.txt', message)
+      // res.statusCode = 302;
+      // res.setHeader('Location', '/');
+      // return res.end();
       // None Blocking Pattern
-      // fs.writeFile('message.txt', message, err => {
-      //   res.statusCode = 302;
-      //   res.setHeader('Location', '/');
-      //   return res.end();
-      // });
+      fs.writeFile('message.txt', message, err => {
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        return res.end();
+      });
     });
   }
   console.log(req.url, method, ++apiHitTime)
@@ -68,7 +69,7 @@ const routes = (req, res) => {
 // 3. Multiple Exports in Single Object
 // 4. Node provide the Shorthand Syntax for Exporting Modules
 // module.exports => exports. is also works
-exports = {
+module.exports = {
   handler: routes,
   someText: "my some text..."
 }
