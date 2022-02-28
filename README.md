@@ -22,3 +22,5 @@
       "runtimeExecutable": "nodemon"
     }
 ```
+6. Install Templeting Engines
+##### npm i --save ejs pug express-handlebars
