@@ -5,14 +5,23 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-// Templating Engine HandleBar is not Working
-var exphbs  = require('express-handlebars');
-var hbs = exphbs.create({ extname: '.hbs' /* config */ });
-// Register `hbs.engine` with the Express app.
-app.engine('.hbs', hbs.engine);
-app.set('view engine', '.hbs');
+// 1. Templating Engine EJS
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
-// Templating Engine PUG
+// 2. Templating Engine HandleBar
+// Configuring Engine
+// var exphbs  = require('express-handlebars');
+// var hbs = exphbs.create({ 
+//   extname: '.hbs',
+//   layoutsDir: 'views/layouts/',
+// 	defaultLayout: 'main',
+// });
+// app.engine('.hbs', hbs.engine);
+// app.set('view engine', '.hbs');
+// app.set('views', 'views');
+
+// 3. Templating Engine PUG
 // app.set('view engine', 'pug');
 // app.set('views', 'views'); // Default for Pug
 
