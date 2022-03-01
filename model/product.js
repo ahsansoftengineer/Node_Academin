@@ -1,7 +1,7 @@
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
+const fs = require('fs');
 
-const paths = require('../util/path')
+const paths = require('../util/path');
 
 const p = path.join(paths, 'data', 'product.json');
 
