@@ -1,6 +1,5 @@
 const Product = require("../model/product");
 
-const productz = []
 exports.addGet = (req, res, next) => {
   res.render('add-product', {
     pageTitle: 'Add Product',
