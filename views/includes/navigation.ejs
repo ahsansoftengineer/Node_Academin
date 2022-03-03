@@ -3,7 +3,7 @@
     <ul class="main-header__item-list">
       <li class="main-header__item">
         <a class="<%= path === '/' ? 'active' : '' %>" href="/">
-          Shop
+          Home
         </a>
       </li>
       <li class="main-header__item">
@@ -17,14 +17,15 @@
         </a>
       </li>
       <li class="main-header__item">
-        <a class="<%= path === '/admin/product-add' ? 'active' : '' %>" href="/admin/add-product">
-          Cart
+        <a class="<%= path === '/admin/product-add' ? 'active' : '' %>"
+          href="/admin/product-add">
+          Admin Add Product
         </a>
       </li>
       <li class="main-header__item">
-        <a class="<%= path === '/admin/products' ? 'active' : '' %>"
-          href="/admin/products">
-          Products
+        <a class="<%= path === '/admin/product-list' ? 'active' : '' %>"
+          href="/admin/product-list">
+          Admin Product
         </a>
       </li>
     </ul>

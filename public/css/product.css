@@ -23,3 +23,7 @@
 .product__description {
     text-align: center;
 }
+.image{
+  height: 100px;
+  width: 100px;
+}

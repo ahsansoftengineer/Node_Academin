@@ -5,23 +5,29 @@ exports.gets = (req, res, next) => {
     res.render('shop/products', {
       prods: products,
       pageTitle: 'Shop',
-      path: '/',
-      hasProducts: products.length > 0,
-      activeShop: true,
-      productCSS: true
+      path: '/products',
     });
   }));
 }
 
-exports.listGet = (req, res, next) => {
+exports.index = (req, res, next) => {
   Product.fetchAll((products => {
-    res.render('shop/products', {
+    res.render('shop/index', {
       prods: products,
       pageTitle: 'Shop',
       path: '/',
-      hasProducts: products.length > 0,
-      activeShop: true,
-      productCSS: true
     });
   }));
+}
+exports.getCart = (req, res, next) => {
+  res.render('shop/cart', {
+    path: '/cart',
+    pageTitle: 'Cart'
+  })
+}
+exports.getCheckout = (req, res, next) => {
+  res.render('shop/checkout', {
+    path: '/checkout',
+    pageTitle: 'Checkout'
+  })
 }
