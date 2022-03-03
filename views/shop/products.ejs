@@ -14,7 +14,7 @@
                   </h1>
                 </header>
                 <div class="card__image">
-                  <img src="/image/image.svg"
+                  <img class="image" src="/image/image.svg"
                     alt="A Book">
                 </div>
                 <div class="card__content">
@@ -23,7 +23,9 @@
                   </p>
                 </div>
                 <div class="card__actions">
-                  <button class="btn">Add to Cart</button>
+                  <form action="/add-to-cart" method="POST">
+                    <button class="btn">Add to Cart</button>
+                  </form>
                 </div>
               </article>
               <% } %>

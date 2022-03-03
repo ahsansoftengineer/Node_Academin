@@ -10,7 +10,8 @@ exports.productAddGet = (req, res, next) => {
   }); 
 }
 exports.productAddPost = (req, res, next) => {
-  const product = new Product(req.body.title);
+  let d = req.body
+  const product = new Product(d.title, d.imageUrl, d.price, d.description);
   product.save();
   // productz.push({ title: req.body.title });
   // Both are posible routes
