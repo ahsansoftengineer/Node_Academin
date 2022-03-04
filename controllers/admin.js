@@ -18,6 +18,24 @@ exports.productAddPost = (req, res, next) => {
   // res.redirect('/admin/product-list');
   res.redirect('product-list');
 }
+exports.productEditGet = (req, res, next) => {
+  const id = req.params.id;
+
+  res.render('admin/product-add', {
+    pageTitle: 'Product Edit',
+    path: '/admin/product-add',
+    id,
+    formsCSS: true,
+    productCSS: true,
+    activeAddProduct: true
+  }); 
+}
+exports.productEditPost = (req, res, next) => {
+  Product.edit(req.body);
+  // Both are posible routes
+  // res.redirect('/admin/product-list');
+  res.redirect('product-list');
+}
 exports.productListGet = (req, res, next) => {
   Product.fetchAll((products => {
     res.render('admin/product-list', {

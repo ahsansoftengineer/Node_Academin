@@ -8,10 +8,10 @@ const products = [];
 // router.get('/products', admin.productListGet);
 router.get('/product-list', admin.productListGet);
 
-// /admin/add-product => GET
 router.get('/product-add', admin.productAddGet);
-// /admin/add-product => POST
 router.post('/product-add', admin.productAddPost);
 
+router.get('/product-edit', admin.productEditGet);
+router.post('/product-edit', admin.productEditPost);
 exports.routes = router;
 exports.products = products;
