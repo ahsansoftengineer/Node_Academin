@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { DataTypes } = require('@sequelize/core');
 const sequelize = require('../util/database')
 // As of Max
 const Product = sequelize.define(
@@ -9,17 +9,17 @@ const Product = sequelize.define(
       allowNull: false,
       primaryKey: true
     },
-    title: Sequelize.STRING,
+    title: DataTypes.STRING,
     price: {
-      type: Sequelize.DOUBLE,
+      type: DataTypes.DOUBLE,
       allowNull: false,
     },
     imageUrl: {
-      type: Sequelize.STRING,
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     description: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: true
     }
   }
