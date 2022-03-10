@@ -1,16 +1,25 @@
-# Node_Academin
+# 11 Squilize
 ### Connecting to MYSQL
 1. Install MySql in PC
 2. Create a connection Pool
+```script
+  npm i sequelize --save
+  npm i @sequelize/core --save
+``` 
 #### Step 1
 ** util/database.js
 ```javascript
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'node-academind',
-    password: 'passwordGoesHere'
-});
+const Sequelize = require('sequelize')
+const sequelize = new Sequelize(
+  'node-academind', // database
+  'root', // user
+  'ahsan@aam', // password
+  {
+    dialect: 'mysql', // different database has different dialed
+    host: 'localhost' 
+  }
+);
+module.exports = sequelize
 ```
 #### Step 2 
 ** app.js

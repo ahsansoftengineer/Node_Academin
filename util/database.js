@@ -1,11 +1,13 @@
-// To Connect to Data base Create Connection Pool
-const mysql = require('mysql2');
+const Sequelize = require('sequelize')
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'node-academind',
-    password: 'ahsan@aam'
-});
-
-module.exports = pool.promise();
+// const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname') // Example for postgres
+const sequelize = new Sequelize(
+  'node-academind', // database
+  'root', // user
+  'ahsan@aam', // password
+  {
+    dialect: 'mysql', // different database has different dialed
+    host: 'localhost' 
+  }
+);
+module.exports = sequelize
