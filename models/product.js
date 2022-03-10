@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database')
 // As of Max
-const Category = sequelize.define(
-  'category', {
+const Product = sequelize.define(
+  'product', {
     id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true
@@ -24,3 +24,4 @@ const Category = sequelize.define(
     }
   }
 );
+module.exports = Product
