@@ -1,13 +1,15 @@
-const Product = require('../models/product');
+const Product = require("../models/product");
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll(products => {
-    res.render('admin/products', {
-      prods: products,
-      pageTitle: 'Admin Products',
-      path: '/admin/products'
-    });
-  });
+  Product.findAll()
+    .then(products => {
+      res.render('admin/products', {
+        prods: products,
+        pageTitle: 'Admin Products',
+        path: '/admin/products'
+      });
+    })
+    .catch(console.log)
 };
 
 exports.getAddProduct = (req, res, next) => {
@@ -22,13 +24,12 @@ exports.getAddProduct = (req, res, next) => {
 exports.postAddProduct = (req, res, next) => {
   const {title, imageUrl, price, description} = req.body;
   Product.create({
-    title, 
+    title ,
     imageUrl,
     price,
     description
   }).then(result => {
-    console.log(result);
-    res.redirect('admin/products');
+    res.redirect('/admin/products');
   }).catch(error => {
     console.log(error);
   })
