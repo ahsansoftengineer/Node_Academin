@@ -9,9 +9,11 @@
 #### Step 1
 ** util/database.js
 ```javascript
-const Sequelize = require('sequelize')
+const { Sequelize } = require('@sequelize/core');
+
+// const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname') // Example for postgres
 const sequelize = new Sequelize(
-  'node-academind', // database
+  'node-sequelize', // database
   'root', // user
   'ahsan@aam', // password
   {
@@ -20,6 +22,23 @@ const sequelize = new Sequelize(
   }
 );
 module.exports = sequelize
+```
+#### Step 2 
+Check if the Sequelize is Working
+1. Write the following commands in app.js
+```javascript
+const sequelize = require('./util/database')
+
+sequelize
+  .sync()
+  .then(result => {
+    console.log(result);
+    app.listen(3000)
+  })
+  .catch(err => {
+    console.log(err);
+  })
+
 ```
 #### Step 2 
 ** app.js
