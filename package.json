@@ -22,7 +22,8 @@
   "devDependencies": {
     "@types/sequelize": "^4.28.11",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.4.1"
   },
   "dependencies": {
     "@sequelize/core": "^7.0.0-alpha.10",
