@@ -13,13 +13,11 @@ exports.getProducts = (req, res, next) => {
     })
     .catch(console.log)
 };
-
 exports.getProduct = (req, res, next) => {
   const id = req.params.productId;
   // findById replaced with findByPk
   Product.findByPk(id)
     .then(product => {
-      console.log(product)
       res.render('shop/product-detail', {
         product,
         pageTitle: product.title,
@@ -42,7 +40,6 @@ exports.getProduct = (req, res, next) => {
   // })
   // .catch(console.log)
 };
-
 exports.getIndex = (req, res, next) => {
   Product.findAll()
     .then(products => {
@@ -54,7 +51,6 @@ exports.getIndex = (req, res, next) => {
     })
     .catch(console.log)
 };
-
 exports.getCart = (req, res, next) => {
   req.user
     .getCart()
@@ -72,7 +68,6 @@ exports.getCart = (req, res, next) => {
     })
     .catch(console.log);
 };
-
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
   let fetchedCart;
@@ -103,7 +98,7 @@ exports.postCart = (req, res, next) => {
     .then(() => {
       res.redirect('/cart');
     })
-    .catch(err => console.log(err));
+    .catch(console.log);
 };
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
@@ -121,14 +116,12 @@ exports.postCartDeleteProduct = (req, res, next) => {
     })
     .catch(console.log);
 };
-
 exports.getOrders = (req, res, next) => {
   res.render('shop/orders', {
     path: '/orders',
     pageTitle: 'Your Orders'
   });
 };
-
 exports.getCheckout = (req, res, next) => {
   res.render('shop/checkout', {
     path: '/checkout',

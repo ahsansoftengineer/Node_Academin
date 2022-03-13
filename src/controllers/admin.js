@@ -14,7 +14,6 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getAddProduct = (req, res, next) => {
-  console.log('in here')
   res.render('admin/product-add', {
     pageTitle: 'Add Product',
     path: '/admin/add-product',
@@ -24,7 +23,6 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const userProduct = { title, imageUrl, price, description } = req.body;
-  console.log(userProduct)
   // Option 1: Tipical Way
   // Product.create({
   //   ...userProduct,
@@ -36,9 +34,7 @@ exports.postAddProduct = (req, res, next) => {
   })
   .then(result => {
     res.redirect('/admin/products');
-  }).catch(error => {
-    console.log(error);
-  })
+  }).catch(console.log)
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -80,22 +76,18 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  console.log(prodId);
   // Product.destroy({
   //   where: {
   //     id: prodId
   //   }
   // }).then(result => {
   //   res.redirect('/admin/products');
-  // }).catch(console.log)
   Product.findByPk(prodId)
   .then(result => {
-    console.log(result);
     if(req.user.id == result.UserId)
       return result.destroy()
     else return new Promise((resolve, reject) => {
       resolve()
-      console.log('Id not found')
     })
   }).then (result => {
     res.redirect('/admin/products');
