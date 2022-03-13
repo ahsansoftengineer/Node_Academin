@@ -18,8 +18,19 @@ app.set('views', 'src/views');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Here we are setting up User Who ever making the Request
+app.use((req, res, next) => {
+  if(!req.user)
+  User.findByPk(1)
+    .then(user => {
+      req.user = user;
+      next;
+    })
+  console.log(req?.user)
+})
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+
 // Creating Relation ship
 Product.belongsTo(
   User, {
@@ -29,8 +40,17 @@ Product.belongsTo(
 User.hasMany(Product)
 
 sequelize
-  .sync({force: true})
+  // .sync({force: true})
+  .sync()
   .then(result => {
+    return User.findByPk(1)
+  })
+  .then (user => {
+    if(!user) return User.create({name: 'Ahsan', email: 'test@test.com'})
+    return user
+  })
+  .then(user => {
+    console.log(user);
     app.listen(3000)
   })
   .catch(err => {
