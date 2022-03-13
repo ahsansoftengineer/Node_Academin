@@ -1,7 +1,8 @@
 const Product = require("../models/product");
 
 exports.getProducts = (req, res, next) => {
-  Product.findAll()
+  // Product.findAll()
+  req.user.getProducts() // the user we set in app.js
     .then(products => {
       res.render('admin/products', {
         prods: products,
@@ -22,13 +23,18 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  const { title, imageUrl, price, description } = req.body;
-  Product.create({
-    title,
-    imageUrl,
-    price,
-    description
-  }).then(result => {
+  const userProduct = { title, imageUrl, price, description } = req.body;
+  console.log(userProduct)
+  // Option 1: Tipical Way
+  // Product.create({
+  //   ...userProduct,
+  //   userId:req.user.id
+  // })
+  // Option 2: Better Way
+  req.user.createProduct({
+    ...userProduct
+  })
+  .then(result => {
     res.redirect('/admin/products');
   }).catch(error => {
     console.log(error);
@@ -82,8 +88,15 @@ exports.postDeleteProduct = (req, res, next) => {
   // }).then(result => {
   //   res.redirect('/admin/products');
   // }).catch(console.log)
-  Product.findByPk(prodId).then(result => {
-    return result.destroy()
+  Product.findByPk(prodId)
+  .then(result => {
+    console.log(result);
+    if(req.user.id == result.UserId)
+      return result.destroy()
+    else return new Promise((resolve, reject) => {
+      resolve()
+      console.log('Id not found')
+    })
   }).then (result => {
     res.redirect('/admin/products');
   })

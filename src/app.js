@@ -20,13 +20,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Here we are setting up User Who ever making the Request
 app.use((req, res, next) => {
-  if(!req.user)
   User.findByPk(1)
     .then(user => {
       req.user = user;
-      next;
+      next();
     })
-  console.log(req?.user)
 })
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
