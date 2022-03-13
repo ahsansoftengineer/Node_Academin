@@ -10,7 +10,7 @@ exports.getProducts = (req, res, next) => {
         path: '/admin/products'
       });
     })
-    .catch(console.log)
+    .catch(console.error);
 };
 
 exports.getAddProduct = (req, res, next) => {
@@ -34,7 +34,7 @@ exports.postAddProduct = (req, res, next) => {
   })
   .then(result => {
     res.redirect('/admin/products');
-  }).catch(console.log)
+  }).catch(console.error);
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -54,7 +54,7 @@ exports.getEditProduct = (req, res, next) => {
       editing: editMode,
       product: product
     });
-  }).catch(console.log);
+  }).catch(console.error);;
 };
 
 exports.postEditProduct = (req, res, next) => {
@@ -71,7 +71,7 @@ exports.postEditProduct = (req, res, next) => {
       console.log('PRODUCT UPDATED');
       res.redirect('/admin/products');
     })
-    .catch(console.log)
+    .catch(console.error);
 };
 
 exports.postDeleteProduct = (req, res, next) => {
@@ -92,5 +92,5 @@ exports.postDeleteProduct = (req, res, next) => {
   }).then (result => {
     res.redirect('/admin/products');
   })
-  .catch(console.log)
+  .catch(console.error);
 };

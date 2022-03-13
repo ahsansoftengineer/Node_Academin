@@ -19,8 +19,7 @@ const RunSequelize = (startServer) => {
   })
   .then(cart => {
     startServer()
-    
   })
-  .catch(console.log);
+  .catch(console.error);;
 }
 module.exports = RunSequelize

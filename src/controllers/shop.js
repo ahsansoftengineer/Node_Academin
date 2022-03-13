@@ -11,7 +11,7 @@ exports.getProducts = (req, res, next) => {
         path: '/product-list'
       });
     })
-    .catch(console.log)
+    .catch(console.error);
 };
 exports.getProduct = (req, res, next) => {
   const id = req.params.productId;
@@ -24,7 +24,7 @@ exports.getProduct = (req, res, next) => {
         path: '/product-detail'
       });
     })
-    .catch(console.log)
+    .catch(console.error);
   // Approach 2
   // Product.findAll({ 
   //   where: { 
@@ -38,7 +38,7 @@ exports.getProduct = (req, res, next) => {
   //     path: '/product-detail'
   //   });
   // })
-  // .catch(console.log)
+  // .catch(console.error);
 };
 exports.getIndex = (req, res, next) => {
   Product.findAll()
@@ -49,7 +49,7 @@ exports.getIndex = (req, res, next) => {
         path: '/'
       });
     })
-    .catch(console.log)
+    .catch(console.error);
 };
 exports.getCart = (req, res, next) => {
   req.user
@@ -64,9 +64,9 @@ exports.getCart = (req, res, next) => {
             products: products
           });
         })
-        .catch(console.log);
+        .catch(console.error);;
     })
-    .catch(console.log);
+    .catch(console.error);;
 };
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
@@ -98,7 +98,7 @@ exports.postCart = (req, res, next) => {
     .then(() => {
       res.redirect('/cart');
     })
-    .catch(console.log);
+    .catch(console.error);;
 };
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
@@ -114,13 +114,57 @@ exports.postCartDeleteProduct = (req, res, next) => {
     .then(result => {
       res.redirect('/cart');
     })
-    .catch(console.log);
+    .catch(console.error);;
 };
 exports.getOrders = (req, res, next) => {
-  res.render('shop/orders', {
-    path: '/orders',
-    pageTitle: 'Your Orders'
-  });
+  req.user
+    // Eager Loading
+    .getOrders({include: ['products']})
+    .then(orders => {
+      res.render('shop/orders', {
+        path: '/orders',
+        pageTitle: 'Your Orders',
+        orders: orders
+      });
+    })
+    .then(console.log);
+};
+exports.postOrders = (req, res, next) => {
+  console.warn('in post cart')
+  let fetchedCart
+  req.user
+  .getCart()
+    .then(cart => {
+      fetchedCart = cart
+      return cart.getProducts()
+    })
+    .then(products => {
+      return req.user
+        .createOrder()
+        .then(order => {
+          return order.addProduct(
+            products.map(product =>{
+              product.orderItem = {
+                quantity: product.cartItem.quantity
+              }
+              return product
+          }))
+        })
+        .catch(console.error);
+    })
+    .then(result => {
+      console.warn(result);
+      return fetchedCart.setProducts(null);
+    })
+    .then(result => {
+      console.error('in redirect')
+      res.redirect('/orders')
+    })
+    .catch(console.error);;
+  // res.render('shop/orders', {
+  //   path: '/orders',
+  //   pageTitle: 'Your Orders'
+  // });
 };
 exports.getCheckout = (req, res, next) => {
   res.render('shop/checkout', {
