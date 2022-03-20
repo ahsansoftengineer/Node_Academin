@@ -1,53 +1,36 @@
-# 11 Squilize
-### Connecting to MYSQL
-1. Install MySql in PC
-2. Create a connection Pool
-```script
-  npm i sequelize --save
-  npm i @sequelize/core --save
-``` 
-#### Step 1
-** util/database.js
+# 12 MangoDB
+### Connecting to MangoDB
+1. Create an Account using gmail
+2. Create an Organisation (NodeOrganizationName)
+* * Also can Add User for Org
+3. Create Project (NodeProjectName)
+* * Also Can Add User for Project
+4. Build database
+* * Choose your Package (Shared / Free)
+* * Choose Region (Mumbai)
+* * Set Cluster Name (NodeClusterName)
+5. Create a User
+* * Set User Name (NodeMangoUserName)
+* * Password (NodeMangoPassword)
+6. Set Where Would you Like to Connect From
+* * My Local Environment
+7. Set Current IP Address for Cluster
+* * * Finish it
+8. It will take a while to Create a Cluster
+9. Connect to MangoDBCluster
+10. Choose your Driver and Version (Node-4.0)
+11. Add Your Connection String in Code.
 ```javascript
-const { Sequelize } = require('@sequelize/core');
-
-// const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname') // Example for postgres
-const sequelize = new Sequelize(
-  'node-sequelize', // database
-  'root', // user
-  'ahsan@aam', // password
-  {
-    dialect: 'mysql', // different database has different dialed
-    host: 'localhost' 
-  }
-);
-module.exports = sequelize
+mongodb+srv://ahsansoftengineer:<password>@nodeclustername.0jgxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 ```
-#### Step 2 
-Check if the Sequelize is Working
-1. Write the following commands in app.js
+or 
 ```javascript
-const sequelize = require('./util/database')
-
-sequelize
-  .sync()
-  .then(result => {
-    console.log(result);
-    app.listen(3000)
-  })
-  .catch(err => {
-    console.log(err);
-  })
-
-```
-#### Step 2 
-** app.js
-```javascript
-const db = require('./util/database');
-db.execute('SELECT * FROM products')
-  .then(result => {
-    console.log(result[0])
-    console.log(result[1])
-  })
-  .catch(error => console.log);
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://ahsansoftengineer:<password>@nodeclustername.0jgxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 ```
