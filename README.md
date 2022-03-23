@@ -18,15 +18,18 @@
 * * * Finish it
 8. It will take a while to Create a Cluster
 9. Connect to MangoDBCluster
+10. Create a database and collection
+* * NodeMongoDataBase
+* * NodeMongoCollectionName
 10. Choose your Driver and Version (Node-4.0)
 11. Add Your Connection String in Code.
 ```javascript
-mongodb+srv://ahsansoftengineer:<password>@nodeclustername.0jgxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+"mongodb+srv://ahsansoftengineer:<password>@nodeclustername.0jgxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 ```
 or 
 ```javascript
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://ahsansoftengineer:<password>@nodeclustername.0jgxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = 'mongodb+srv://NodeMangoUserName:NodeMangoPassword@nodeclustername.2x8oc.mongodb.net/NodeMongoDataBase?retryWrites=true&w=majority';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
   const collection = client.db("test").collection("devices");

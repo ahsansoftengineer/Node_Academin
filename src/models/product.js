@@ -1,6 +1,14 @@
 const { DataTypes, Model } = require('@sequelize/core');
 const sequelize = require('../util/database')
 // As of Max
+class Product{
+  constructor(title, price, imageUrl, description){
+    this.title = title;
+    this.price = price;
+    this.imageUrl = imageUrl;
+    this.description = description;
+  }
+}
 const Product = sequelize.define(
   'product', {
     id: {

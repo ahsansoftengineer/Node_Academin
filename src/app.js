@@ -3,12 +3,13 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
-const errorController = require('./controllers/error');
-const User = require('./models/user');
-const SetRelation = require('./sql/relation');
-const RunSequelize = require('./sql/migeration');
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+// const errorController = require('./controllers/error');
+// const User = require('./models/user');
+// const SetRelation = require('./sql/relation');
+const mongoConnect = require('./util/database')
+// const { MongoClient } = require('mongodb');
 
 const app = express();
 
@@ -19,22 +20,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Here we are setting up User Who ever making the Request
-app.use((req, res, next) => {
-  User.findByPk(1)
-    .then(user => {
-      req.user = user;
-      next();
-    })
-})
-app.use('/admin', adminRoutes);
-app.use(shopRoutes);
+// app.use((req, res, next) => {
+//   User.findByPk(1)
+//     .then(user => {
+//       req.user = user;
+//       next();
+//     })
+// })
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
 
-SetRelation()
-RunSequelize(() => {
+// SetRelation()
+mongoConnect((client) => {
+  console.log(client)
   app.listen(3000);
 })
 
-app.use(errorController.get404);
+// app.use(errorController.get404);
 
 
 // app.listen(3000);
