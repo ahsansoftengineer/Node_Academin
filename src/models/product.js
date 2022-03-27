@@ -35,10 +35,11 @@ class Product{
   }
   static get(prodId){
     return db().collection('products')
-      .find({_id: new mongodb.ObjectId(prodId)})
-      .next()
+      .findOne({_id: new mongodb.ObjectId(prodId)})
+      // .find({_id: new mongodb.ObjectId(prodId)})
+      // .next()
       .then(data => {
-        console.log('get worked')
+        console.log('get product worked')
         return data;
       })
       .catch(console.error)
@@ -47,7 +48,7 @@ class Product{
     return db().collection('products')
       .deleteOne({_id: new mongodb.ObjectId(prodId)})
       .then(data => {
-        console.log('deleteOne')
+        console.log('delete product worked')
       })
       .catch(console.error)
   }

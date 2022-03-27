@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 // const errorController = require('./controllers/error');
-// const User = require('./models/user');
+const User = require('./models/user');
 // const SetRelation = require('./sql/relation');
 const mangoConnect = require('./util/database').mangoConnect
 // const { MongoClient } = require('mongodb');
@@ -21,12 +21,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Here we are setting up User Who ever making the Request
 app.use((req, res, next) => {
-  // User.findByPk(1)
-  //   .then(user => {
-  //     req.user = user;
-  //     next();
-  //   })
-  next()
+  User.get('62409c31f214b229c2570ccf')
+    .then(user => {
+      req.user = user;
+      next();
+    })
 })
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
