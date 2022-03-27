@@ -1,3 +1,4 @@
+const mongodb = require('mongodb')
 const db = require('../util/database').getDB;
 // As of Max
 class Product{
@@ -17,7 +18,20 @@ class Product{
     return db().collection('products')
       .find()
       .toArray()
-      .then()
+      .then(data => {
+        console.log('gets worked')
+        return data
+      })
+      .catch(console.error)
+  }
+  static get(prodId){
+    return db().collection('products')
+      .find({_id: new mongodb.ObjectId(prodId)})
+      .next()
+      .then(data => {
+        console.log('get worked')
+        return data;
+      })
       .catch(console.error)
   }
 }

@@ -13,33 +13,18 @@ exports.getProducts = (req, res, next) => {
     })
     .catch(console.error);
 };
-// exports.getProduct = (req, res, next) => {
-//   const id = req.params.productId;
-//   // findById replaced with findByPk
-//   Product.findByPk(id)
-//     .then(product => {
-//       res.render('shop/product-detail', {
-//         product,
-//         pageTitle: product.title,
-//         path: '/product-detail'
-//       });
-//     })
-//     .catch(console.error);
-//   // Approach 2
-//   // Product.findAll({ 
-//   //   where: { 
-//   //     id
-//   //   }
-//   // }).then(result => {
-//   //   const product = result[0]
-//   //   res.render('shop/product-detail', {
-//   //     product: product,
-//   //     pageTitle: product.title,
-//   //     path: '/product-detail'
-//   //   });
-//   // })
-//   // .catch(console.error);
-// };
+exports.getProduct = (req, res, next) => {
+  const id = req.params.productId;
+  Product.get(id)
+    .then(product => {
+      res.render('shop/product-detail', {
+        product,
+        pageTitle: product.title,
+        path: '/product-detail'
+      });
+    })
+    .catch(console.error);
+};
 exports.getIndex = (req, res, next) => {
   Product.gets()
     .then(products => {
