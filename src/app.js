@@ -3,14 +3,13 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// const adminRoutes = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 // const shopRoutes = require('./routes/shop');
 // const errorController = require('./controllers/error');
 // const User = require('./models/user');
 // const SetRelation = require('./sql/relation');
-const mongoConnect = require('./util/database')
+const mangoConnect = require('./util/database').mangoConnect
 // const { MongoClient } = require('mongodb');
-
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -27,12 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //       next();
 //     })
 // })
-// app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 // app.use(shopRoutes);
 
 // SetRelation()
-mongoConnect((client) => {
-  console.log(client)
+mangoConnect((client) => {
+  // console.log(client)
   app.listen(3000);
 })
 

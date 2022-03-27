@@ -1,5 +1,4 @@
-const { DataTypes, Model } = require('@sequelize/core');
-const sequelize = require('../util/database')
+const getDB = require('../util/database').getDB;
 // As of Max
 class Product{
   constructor(title, price, imageUrl, description){
@@ -8,65 +7,13 @@ class Product{
     this.imageUrl = imageUrl;
     this.description = description;
   }
-}
-const Product = sequelize.define(
-  'product', {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true
-    },
-    title: DataTypes.STRING,
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    imageUrl: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
+  save(){
+    const db = getDB();
+    return db.collection('products')
+      .insertOne(this)
+      .then(console.log)
+      .catch(console.error)
   }
-);
-module.exports = Product
-// As of Documentation
-// class Product extends Model {
-//   id;
-//   title;
-//   price;
-//   imageUrl;
-//   description;
-// }
-// Product.init({
-//   id: {
-//     type: DataTypes.INTEGER,
-//     autoIncrement: true,
-//     allowNull: false,
-//     primaryKey: true
-//   },
-//   title: DataTypes.STRING,
-//   price: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false,
-//   },
-//   imageUrl: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   description: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   }
-// }, {
-//   sequelize,
-//   // modelName: 'Product',
-//   // freezeTableName: true
-
-// });
-
-// module.exports = Product
-
+}
+// Correct Way of Exporting Single Item from a File
+module.exports = Product;

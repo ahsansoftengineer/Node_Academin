@@ -22,8 +22,15 @@
 10. Create a database and collection
 * * NodeMongoDataBase
 * * NodeMongoCollectionName
-10. Choose your Driver and Version (Node-4.0)
-11. Add Your Connection String in Code.
+11. Choose your Driver and Version (Node-4.0)
+12. Follow this Structure to Connect to MangoDB
+* > src/util/database.js (For Set up Connection String)
+* > src/app.js ()
+* > src/routes/admin.js 
+* > src/controllers/admin.js
+* > src/models/admin.js
+* > src/views/admin/(CRUD)
+12. Add Your Connection String in Code.
 ```javascript
 "mongodb+srv://ahsansoftengineer:<password>@nodeclustername.0jgxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 ```
