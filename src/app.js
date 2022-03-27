@@ -19,13 +19,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Here we are setting up User Who ever making the Request
-// app.use((req, res, next) => {
-//   User.findByPk(1)
-//     .then(user => {
-//       req.user = user;
-//       next();
-//     })
-// })
+app.use((req, res, next) => {
+  // User.findByPk(1)
+  //   .then(user => {
+  //     req.user = user;
+  //     next();
+  //   })
+  next()
+})
 app.use('/admin', adminRoutes);
 // app.use(shopRoutes);
 

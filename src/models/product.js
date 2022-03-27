@@ -1,7 +1,7 @@
 const getDB = require('../util/database').getDB;
 // As of Max
 class Product{
-  constructor(title, price, imageUrl, description){
+  constructor({title, price, imageUrl, description}){
     this.title = title;
     this.price = price;
     this.imageUrl = imageUrl;

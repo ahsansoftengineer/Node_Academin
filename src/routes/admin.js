@@ -2,7 +2,9 @@ const express = require('express');
 const adminController = require('../controllers/admin');
 const router = express.Router();
 
-// /admin/products => GET
+router.use((req, res, next)=> {
+  next();
+})
 // router.get('/products', adminController.getProducts);
 router.get('/product-add', adminController.getAddProduct);
 router.post('/product-add', adminController.postAddProduct);
@@ -10,4 +12,4 @@ router.post('/product-add', adminController.postAddProduct);
 // router.post('/product-edit', adminController.postEditProduct);
 // router.post('/product-del', adminController.postDeleteProduct);
 
-exports = router;
+module.exports = router;

@@ -1,7 +1,6 @@
 
 const Product = require('../models/product')
 // exports.getProducts = (req, res, next) => {
-//   // Product.findAll()
 //   req.user.getProducts() // the user we set in app.js
 //     .then(products => {
 //       res.render('admin/products', {
@@ -23,8 +22,16 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const userProduct = { title, imageUrl, price, description } = req.body;
-  const product = new Product(...userProduct)
-  product.save()
+  const product = new Product(userProduct)
+  product
+    .save()
+    .then(result =>{
+      console.log('Created')
+      res.redirect('/admin/products')
+    })
+    .catch(err => {
+      console.log(err)
+    })
 };
 
 // exports.getEditProduct = (req, res, next) => {
