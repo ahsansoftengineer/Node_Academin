@@ -1,16 +1,16 @@
 
 const Product = require('../models/product')
-// exports.getProducts = (req, res, next) => {
-//   req.user.getProducts() // the user we set in app.js
-//     .then(products => {
-//       res.render('admin/products', {
-//         prods: products,
-//         pageTitle: 'Admin Products',
-//         path: '/admin/products'
-//       });
-//     })
-//     .catch(console.error);
-// };
+exports.getProducts = (req, res, next) => {
+  Product.gets()
+  .then(products => {
+      res.render('admin/products', {
+        prods: products,
+        pageTitle: 'Admin Products',
+        path: '/admin/products'
+      });
+    })
+  .catch(console.error);
+};
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/product-add', {

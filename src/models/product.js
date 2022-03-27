@@ -1,4 +1,4 @@
-const getDB = require('../util/database').getDB;
+const db = require('../util/database').getDB;
 // As of Max
 class Product{
   constructor({title, price, imageUrl, description}){
@@ -8,10 +8,16 @@ class Product{
     this.description = description;
   }
   save(){
-    const db = getDB();
-    return db.collection('products')
+    return db().collection('products')
       .insertOne(this)
       .then(console.log)
+      .catch(console.error)
+  }
+  static gets(){
+    return db().collection('products')
+      .find()
+      .toArray()
+      .then()
       .catch(console.error)
   }
 }
