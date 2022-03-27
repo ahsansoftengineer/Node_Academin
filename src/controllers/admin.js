@@ -1,7 +1,7 @@
 
 const Product = require('../models/product')
 exports.getProducts = (req, res, next) => {
-  Product.gets()
+  Product.gets(req.user)
   .then(products => {
       res.render('admin/products', {
         prods: products,
@@ -22,7 +22,7 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const userProduct = { title, imageUrl, price, description } = req.body;
-  const product = new Product(userProduct)
+  const product = new Product({...userProduct, userId: req.user._id})
   product
     .save()
     .then(result =>{

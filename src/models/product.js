@@ -2,12 +2,13 @@ const mongodb = require('mongodb')
 const db = require('../util/database').getDB;
 // As of Max
 class Product{
-  constructor({title, price, imageUrl, description, productId}){
+  constructor({title, price, imageUrl, description, productId, userId}){
     this.title = title;
     this.price = price;
     this.imageUrl = imageUrl;
     this.description = description;
     productId ? this._id = new mongodb.ObjectId(productId): null
+    this.userId = userId
   }
   save(){
     let action
@@ -23,7 +24,7 @@ class Product{
       .then(console.log)
       .catch(console.error)
   }
-  static gets(){
+  static gets(user){
     return db().collection('products')
       .find()
       .toArray()

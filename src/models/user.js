@@ -1,10 +1,12 @@
-const mongodb = require('mongodb')
+const mongodb = require('mongodb');
+const Product = require('./product');
 const db = require('../util/database').getDB;
 class User {
-  constructor(username, email, id){
-    this.name = username;
+  constructor({name, email, cart, id}){
+    this.name = name;
     this.email = email
     id ? this._id = new mongodb.ObjectId(id): null
+    this.cart = cart``
   }
   save(){
     let action
@@ -21,6 +23,18 @@ class User {
         console.log('save user worked')
       })
       .catch(console.error)
+  }
+  saveCart(product){
+    // const cartProduct = this.cart.items.findIndex(cp =>{
+    //   return cp._id === Product._id
+    // })
+    // Part 197 Adding Cart Item
+    const cart = {items: [{product, quantity: 1}]}
+    return db().collection('users').updateOne(
+      {id: this._id},
+      {$set: {cart}}
+
+    )
   }
   static get(id){
     return db().collection('users')
