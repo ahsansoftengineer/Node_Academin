@@ -1,5 +1,5 @@
 # 12 MangoDB
-### Connecting to MangoDB
+## Connecting to MangoDB
 1. Create an Account using gmail
 2. Create an Organisation (NodeOrganizationName)
 * * Also can Add User for Org
@@ -15,6 +15,7 @@
 6. Set Where Would you Like to Connect From
 * * My Local Environment
 7. Set Current IP Address for Cluster
+* * Allow Access from Anywhere
 * * * Finish it
 8. It will take a while to Create a Cluster
 9. Connect to MangoDBCluster

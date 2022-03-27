@@ -2,7 +2,7 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 
 let _db;
-const mongoConnect = callback => {
+const mongoConnect = (callback) => {
   MongoClient.connect(
     'mongodb+srv://NodeMangoUserName:NodeMangoPassword@nodeclustername.2x8oc.mongodb.net/NodeMongoDataBase?retryWrites=true&w=majority'
   ).then(client => {
@@ -23,5 +23,5 @@ const getDb = () => {
   }
   throw 'No database available'
 }
-module.exports.mongoConnect = mongoConnect;
-module.exports.getDb = getDb;
+module.exports = mongoConnect;
+module.exports.getDB = getDb;
