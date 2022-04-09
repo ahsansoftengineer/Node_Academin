@@ -1,5 +1,5 @@
 # 12 MangoDB
-## Connecting to MangoDB
+## MangoDB Server Settings
 1. Create an Account using gmail
 2. Create an Organisation (NodeOrganizationName)
 * * Also can Add User for Org
@@ -23,25 +23,31 @@
 * * NodeMongoDataBase
 * * NodeMongoCollectionName
 11. Choose your Driver and Version (Node-4.0)
-12. Follow this Structure to Connect to MangoDB
+```javascript
+  "mongodb+srv://ahsansoftengineer:<password>@nodeclustername.0jgxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+```
+or 
+```javascript
+  const { MongoClient, ServerApiVersion } = require('mongodb');
+  const uri = 'mongodb+srv://NodeMangoUserName:NodeMangoPassword@nodeclustername.2x8oc.mongodb.net/NodeMongoDataBase?retryWrites=true&w=majority';
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+  client.connect(err => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+  });
+```
+## MangoDB Application Settings
+1. Installing Mongo Client
+```javascript
+  npm i --save mongodb
+  npm i --save-dev @types/mongodb
+```
+
 * > src/util/database.js (For Set up Connection String)
 * > src/app.js ()
 * > src/routes/admin.js 
 * > src/controllers/admin.js
 * > src/models/admin.js
 * > src/views/admin/(CRUD)
-12. Add Your Connection String in Code.
-```javascript
-"mongodb+srv://ahsansoftengineer:<password>@nodeclustername.0jgxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-```
-or 
-```javascript
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = 'mongodb+srv://NodeMangoUserName:NodeMangoPassword@nodeclustername.2x8oc.mongodb.net/NodeMongoDataBase?retryWrites=true&w=majority';
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-```
+3. Add Your Connection String in Code.
